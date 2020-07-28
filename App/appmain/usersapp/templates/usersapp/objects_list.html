@@ -1,0 +1,19 @@
+{% extends 'usersapp/index.html' %}
+
+{% block head %} 
+    <p>Голова страницы объектов</p>
+{% endblock%}
+
+{% block content %}
+    <p>Страница объектов</p>
+    {% for object in objects %}
+        <div class="card mt-3" style="width: 18rem;">
+        <img src="..." class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ object.memberName }}</h5>
+            <p class="card-text">{{ object.description }}</p>
+            <a href="{{ object.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
+        </div>
+        </div>
+    {% endfor %}
+{% endblock %}

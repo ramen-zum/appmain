@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 # ========= Administrators data =======================
 # Локация (для месторасположения заведения)
 class Location(models.Model):
+    countryName = models.CharField(max_length=50, default="KZ")
     locationName = models.CharField(max_length=50)
     code = models.CharField(max_length=8, unique=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
@@ -16,6 +17,8 @@ class Location(models.Model):
 
 # Вид деятельности заведения
 class Type_of_activity(models.Model):
+    categoryCode = models.CharField(max_length=50)
+    categoryName = models.CharField(max_length=50)
     activityName = models.CharField(max_length=50)
     codeOfActivity = models.CharField(max_length=50, unique=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
@@ -43,7 +46,7 @@ class Company (models.Model):
 
 # для генерации ссылок на конкретное заведение
     def get_absolute_url(self):
-        return reverse('company_detail_url', kwargs={'slug': self.slug} )
+        return reverse('object_detail_url', kwargs={'slug': self.slug} )
 
     def __str__(self):
         return self.memberName

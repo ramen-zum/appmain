@@ -3,9 +3,8 @@ from .views import *
 
 urlpatterns = [
     # Главная страница
-    path('', index_view, name='index_url'),
     # заведения
-    path('all/', objects_list_view, name='objects_list_url'),
+    path('', objects_list_view, name='objects_list_url'),
     path('<str:slug>', object_details_view, name='object_detail_url'),
     # Профиль пользователя
     path('userprofile/<str:slug>', user_page_view, name='user_page_url'),

@@ -94,15 +94,19 @@ class Services_of_institutions(models.Model):
 # ========== Customers data ===========================
 # Заказы
 class Order(models.Model):
-    orderCode = models.CharField(max_length=50)
     company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     created_datetime = models.DateTimeField(auto_now_add=True)
     isPrepayment = models.BooleanField()
+    orderTime = models.DateTimeField()
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    table_id = models.ForeignKey(Table_of_restaurant, on_delete=models.CASCADE)
+    table_id = models.ForeignKey(Table_of_restaurant, on_delete=models.CASCADE, null=True)
+    service_id = models.ForeignKey(Services_of_institutions, on_delete=models.CASCADE, null=True)
+    amount = models.DecimalField(null=True, max_digits=9, decimal_places=2)
 
     def __str__(self):
         return self.orderCode
+
+
 
 # Обзоры и рейтинг заведения и столов (если общепит)
 class Review(models.Model):

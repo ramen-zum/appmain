@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'usersapp',     # user's application
     'partnersapp',  # partners' application
     'yapi_app',     # api of the application
-    'frontendapp',  # frontend of the application (react.js?)
     'rest_framework', # django api
+    'frontendapp',  # frontend of the application (react.js?)
 ]
 
 MIDDLEWARE = [

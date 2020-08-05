@@ -37,7 +37,7 @@ class App extends Component {
         {this.state.data.map(order => {
           return (
             <li key={order.id}>
-              {order.company_id_id} - {order.table_id_id}
+              {order.company_id} - {order.table_id}
             </li>
           );
         })}

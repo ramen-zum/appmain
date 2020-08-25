@@ -1,52 +1,25 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, { Component, Fragment } from 'react'
+import ReactDOM from 'react-dom'
+
+import Header from './layout/Header'
+import Dashboard from './companies/Dashboard'
+
+import { Provider } from 'react-redux'
+import store from '../store'
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      loaded: false,
-      placeholder: "Loading"
-    };
-  }
-
-  componentDidMount() {
-    fetch("api/order")
-      .then(response => {
-        if (response.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true
-          };
-        });
-      });
-  }
-
   render() {
     return (
-      <ul>
-        {this.state.data.map(order => {
-          return (
-            <li key={order.id}>
-              {order.company_id} - {order.table_id}
-            </li>
-          );
-        })}
-      </ul>
-    );
+      <Provider store={store}>
+        <Fragment>
+          <Header />
+          <div className="container">
+            <Dashboard />
+          </div>
+        </Fragment>
+      </Provider>
+    )
   }
 }
 
-export default App;
-
-const container = document.getElementById("app");
-render(<App />, container);
+ReactDOM.render(<App />, document.getElementById('app'))
